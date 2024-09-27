@@ -12,6 +12,17 @@ export class ProductController {
     res.status(200).json(products);
   };
 
+  getProductById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { product_id } = req.params;
+      const product = await productRepository.getProductById(product_id);
+
+      res.status(200).json(product);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   getProductsByStore = async (
     req: Request,
     res: Response,
@@ -48,15 +59,15 @@ export class ProductController {
   updateproduct = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const props: IProduct = req.body;
-      const { product_code } = req.params;
+      const { product_id } = req.params;
 
       const updatedProduct = await productRepository.updateProduct(
         props,
-        product_code
+        product_id
       );
 
       res.status(200).json({
-        message: `Produto: ${updatedProduct.name} - ${updatedProduct.code} foi atualizado!`,
+        message: `Produto: ${updatedProduct.name} - ${updatedProduct.id} foi atualizado!`,
       });
     } catch (error) {
       next(error);
@@ -65,14 +76,12 @@ export class ProductController {
 
   deleteProduct = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { product_code } = req.params;
+      const { product_id } = req.params;
 
-      const deletedProduct = await productRepository.deleteProduct(
-        product_code
-      );
+      const deletedProduct = await productRepository.deleteProduct(product_id);
 
       res.status(200).json({
-        message: `Produto: ${deletedProduct.name} - ${deletedProduct.code} deletado!`,
+        message: `Produto: ${deletedProduct.name} - ${deletedProduct.id} deletado!`,
       });
     } catch (error) {
       next(error);
@@ -81,11 +90,11 @@ export class ProductController {
 
   rateProduct = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { product_code } = req.params;
+      const { product_id } = req.params;
       const { rate } = req.body;
 
       const updatedProduct = await productRepository.rateProduct(
-        product_code,
+        product_id,
         rate
       );
 

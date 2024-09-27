@@ -1,5 +1,7 @@
+import { ObjectId } from "mongodb";
+
 export interface IProduct extends Document {
-  code: string;
+  _id: ObjectId;
   name: string;
   price: number;
   quantity: number;

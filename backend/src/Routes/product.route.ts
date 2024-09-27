@@ -6,15 +6,22 @@ export const productRouter = Router();
 const productController = new ProductController();
 
 productRouter.get("/getall", productController.getAllProducts);
-productRouter.get("/product/:store_id", productController.getProductsByStore);
-productRouter.post("/product/create/:store_id", productController.createProduct);
-productRouter.post("/rateproduct/:product_code", productController.rateProduct);
+productRouter.get("/productbyid/:product_id", productController.getProductById);
+productRouter.get(
+  "/productbystore/:store_id",
+  productController.getProductsByStore
+);
+productRouter.post(
+  "/product/create/:store_id",
+  productController.createProduct
+);
+productRouter.post("/rateproduct/:product_id", productController.rateProduct);
 productRouter.put(
-  "/updateproduct/:product_code",
+  "/updateproduct/:product_id",
   productController.updateproduct
 );
 productRouter.delete(
-  "/deleteproduct/:product_code",
+  "/deleteproduct/:product_id",
   productController.deleteProduct
 );
 

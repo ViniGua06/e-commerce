@@ -16,8 +16,6 @@ export const StoresContainer = () => {
       const data = await res.json();
 
       setStores(data);
-
-      alert(user_id);
     } catch (error) {
       console.log(error);
     }

@@ -17,11 +17,16 @@ class StoreRepository {
             const stores = yield Store_1.Store.find();
             return stores;
         });
+        this.getStoresByUserId = (user_id) => __awaiter(this, void 0, void 0, function* () {
+            const stores = yield Store_1.Store.find({ user_id: user_id });
+            return stores;
+        });
         this.insertStore = (store) => __awaiter(this, void 0, void 0, function* () {
             const newStore = new Store_1.Store({
                 name: store.name,
                 desc: store.desc,
-                products: [],
+                image: store.image,
+                user_id: store.user_id,
             });
             return yield newStore.save();
         });

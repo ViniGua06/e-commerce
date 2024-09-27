@@ -1,16 +1,16 @@
 import { IProduct } from "../../../models/Product";
 import { ProductCardContainer, ProductImage, RatingContainer } from "./styles";
 
-import halfStar from "../../../public/stars/half.star.svg";
 import emptyStar from "../../../../public/stars/empty.star.svg";
-import fullStar from "../../../public/stars/full.star.svg";
 
 import { useEffect, useState } from "react";
 import { Stars } from "../../ratingStars";
+import { useNavigate } from "react-router-dom";
 
 export const ProductCard = (product: IProduct) => {
-  const { code, name, price, quantity, rating, store, tags, image } = product;
+  const { name, price, quantity, rating, store, tags, image } = product;
   const [average, setAverage] = useState(0);
+  const navigate = useNavigate();
 
   const calcAverage = () => {
     let soma = 0;
@@ -25,9 +25,13 @@ export const ProductCard = (product: IProduct) => {
     calcAverage();
   }, []);
 
+  const goToProductPage = () => {
+    navigate("/product");
+  };
+
   return (
     <>
-      <ProductCardContainer>
+      <ProductCardContainer onClick={goToProductPage}>
         <h2>{name.toUpperCase()}</h2>
         <ProductImage src={image} alt="" />
         {rating.length == 0 ? (

@@ -2,11 +2,22 @@ import { BadRequestError } from "../Errors/BadRequest.error";
 import { IProduct } from "../Interfaces/IProduct";
 import { Product } from "../Models/Product";
 
+import { ObjectId } from "mongodb";
+
 export class ProductRepository {
   getAllProducts = async (): Promise<IProduct[]> => {
     const products = await Product.find();
 
     return products;
+  };
+
+  getProductById = async (product_id: string) => {
+    console.log(product_id);
+    const product = await Product.findOne({
+      _id: new ObjectId(product_id),
+    });
+
+    return product;
   };
 
   getProductsByStoreId = async (store_id: string) => {
@@ -30,12 +41,12 @@ export class ProductRepository {
     return await newProduct.save();
   };
 
-  updateProduct = async (product: Partial<IProduct>, product_code: string) => {
-    if (!product_code) throw new BadRequestError("Necessário código!");
+  updateProduct = async (product: Partial<IProduct>, product_id: string) => {
+    if (!product_id) throw new BadRequestError("Necessário código!");
 
     const updatedProduct = await Product.findOneAndUpdate(
       {
-        code: product_code,
+        _id: product_id,
       },
       {
         name: product.name,
@@ -54,8 +65,8 @@ export class ProductRepository {
     return updatedProduct;
   };
 
-  rateProduct = async (product_code: string, rate: number) => {
-    const product = await Product.findOne({ code: product_code });
+  rateProduct = async (product_id: string, rate: number) => {
+    const product = await Product.findOne({ _id: product_id });
 
     if (!product) throw new BadRequestError("Produto não encontrado!");
 
@@ -66,12 +77,12 @@ export class ProductRepository {
     return updatedProduct;
   };
 
-  deleteProduct = async (product_code: string) => {
-    if (!product_code) throw new BadRequestError("Código faltando!");
+  deleteProduct = async (product_id: string) => {
+    if (!product_id) throw new BadRequestError("Código faltando!");
 
     const deletedProduct = await Product.findOneAndDelete(
       {
-        code: product_code,
+        _id: product_id,
       },
       {
         runValidators: true,

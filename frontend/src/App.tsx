@@ -6,6 +6,8 @@ import { UserPage } from "./pages/UserPage";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser, userSelector } from "./redux/user/slice";
 import { apiUrl } from "./url";
+import { StorePage } from "./pages/StorePage";
+import { ProductPage } from "./pages/ProductPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +57,8 @@ function App() {
           <Route path="/search" element={<Home />}></Route>
           <Route path="/sign" element={<Sign />}></Route>
           <Route path="/user" element={<UserPage />}></Route>
+          <Route path="/store/:store_id" element={<StorePage />}></Route>
+          <Route path="/product/:product_id" element={<ProductPage />}></Route>
         </Routes>
       </BrowserRouter>
     </>

@@ -18,6 +18,16 @@ class ProductController {
             const products = yield productRepository.getAllProducts();
             res.status(200).json(products);
         });
+        this.getProductById = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { product_id } = req.params;
+                const product = yield productRepository.getProductById(product_id);
+                res.status(200).json(product);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
         this.getProductsByStore = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const { store_id } = req.params;
@@ -42,10 +52,10 @@ class ProductController {
         this.updateproduct = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const props = req.body;
-                const { product_code } = req.params;
-                const updatedProduct = yield productRepository.updateProduct(props, product_code);
+                const { product_id } = req.params;
+                const updatedProduct = yield productRepository.updateProduct(props, product_id);
                 res.status(200).json({
-                    message: `Produto: ${updatedProduct.name} - ${updatedProduct.code} foi atualizado!`,
+                    message: `Produto: ${updatedProduct.name} - ${updatedProduct.id} foi atualizado!`,
                 });
             }
             catch (error) {
@@ -54,10 +64,10 @@ class ProductController {
         });
         this.deleteProduct = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const { product_code } = req.params;
-                const deletedProduct = yield productRepository.deleteProduct(product_code);
+                const { product_id } = req.params;
+                const deletedProduct = yield productRepository.deleteProduct(product_id);
                 res.status(200).json({
-                    message: `Produto: ${deletedProduct.name} - ${deletedProduct.code} deletado!`,
+                    message: `Produto: ${deletedProduct.name} - ${deletedProduct.id} deletado!`,
                 });
             }
             catch (error) {
@@ -66,9 +76,9 @@ class ProductController {
         });
         this.rateProduct = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const { product_code } = req.params;
+                const { product_id } = req.params;
                 const { rate } = req.body;
-                const updatedProduct = yield productRepository.rateProduct(product_code, rate);
+                const updatedProduct = yield productRepository.rateProduct(product_id, rate);
                 res
                     .status(200)
                     .json({ message: "Nota " + updatedProduct.rating + " adicionada!" });

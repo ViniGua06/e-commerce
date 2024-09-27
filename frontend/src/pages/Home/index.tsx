@@ -38,7 +38,7 @@ export const Home = () => {
               return (
                 <>
                   <ProductCard
-                    code={item.code}
+                    _id={item._id}
                     name={item.name}
                     price={item.price}
                     quantity={item.quantity}

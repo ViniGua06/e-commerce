@@ -18,6 +18,11 @@ class StoreController {
             const stores = yield storeRepository.getAllStores();
             res.json(200).json(stores);
         });
+        this.getStoresByUserId = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { user_id } = req.params;
+            const stores = yield storeRepository.getStoresByUserId(user_id);
+            res.status(200).json(stores);
+        });
         this.createStore = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const store = req.body;
