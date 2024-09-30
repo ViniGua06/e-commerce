@@ -11,6 +11,13 @@ export class StoreController {
     res.json(200).json(stores);
   };
 
+  getStorById = async (req: Request, res: Response) => {
+    const { store_id } = req.params;
+    const store = await storeRepository.getStoreById(store_id);
+
+    res.status(200).json(store);
+  };
+
   getStoresByUserId = async (req: Request, res: Response) => {
     const { user_id } = req.params;
     const stores = await storeRepository.getStoresByUserId(user_id);

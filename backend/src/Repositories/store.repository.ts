@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { IStore } from "../Interfaces/IStore";
 import { Store } from "../Models/Store";
 
@@ -6,6 +7,11 @@ export class StoreRepository {
     const stores = await Store.find();
 
     return stores;
+  };
+
+  getStoreById = async (store_id: string) => {
+    const store = await Store.findById(new mongoose.Types.ObjectId(store_id));
+    return store;
   };
 
   getStoresByUserId = async (user_id: string) => {
