@@ -106,6 +106,22 @@ export class ProductController {
     }
   };
 
+  addTags = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { product_id } = req.params;
+
+      const tags: string[] = req.body.tags;
+
+      const updatedProduct = await productRepository.addTags(product_id, tags);
+
+      res
+        .status(200)
+        .json({ message: "Tags adicionadas", tags: updatedProduct.tags });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   deleteAll = async (req: Request, res: Response) => {
     await productRepository.deleteAll();
 

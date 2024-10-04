@@ -77,6 +77,19 @@ export class ProductRepository {
     return updatedProduct;
   };
 
+  addTags = async (product_id: string, tags: string[]) => {
+    const product = await Product.findOne({ _id: product_id });
+    if (!product) throw new BadRequestError("Produto não existe!");
+
+    for (let i = 0; i < tags.length; i++) {
+      product.tags.push(tags[i]);
+    }
+
+    const updatedProduct = await product.save();
+
+    return updatedProduct;
+  };
+
   deleteProduct = async (product_id: string) => {
     if (!product_id) throw new BadRequestError("Código faltando!");
 

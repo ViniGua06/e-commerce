@@ -8,7 +8,7 @@ import { Stars } from "../../ratingStars";
 import { useNavigate } from "react-router-dom";
 
 export const ProductCard = (product: IProduct) => {
-  const { name, price, quantity, rating, store, tags, image } = product;
+  const { name, price, quantity, rating, store, tags, image, _id } = product;
   const [average, setAverage] = useState(0);
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ export const ProductCard = (product: IProduct) => {
   }, []);
 
   const goToProductPage = () => {
-    navigate("/product");
+    navigate(`/product/${_id}`);
   };
 
   return (

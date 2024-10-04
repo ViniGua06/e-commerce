@@ -15,6 +15,7 @@ productRouter.post(
   "/product/create/:store_id",
   productController.createProduct
 );
+productRouter.post("/product/:product_id/tag/add");
 productRouter.post("/rateproduct/:product_id", productController.rateProduct);
 productRouter.put(
   "/updateproduct/:product_id",
