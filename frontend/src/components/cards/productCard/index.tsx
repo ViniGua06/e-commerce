@@ -1,5 +1,11 @@
 import { IProduct } from "../../../models/Product";
-import { ProductCardContainer, ProductImage, RatingContainer } from "./styles";
+import {
+  ProductCardContainer,
+  ProductImage,
+  ProductName,
+  ProductPrice,
+  RatingContainer,
+} from "./styles";
 
 import emptyStar from "../../../../public/stars/empty.star.svg";
 
@@ -32,7 +38,7 @@ export const ProductCard = (product: IProduct) => {
   return (
     <>
       <ProductCardContainer onClick={goToProductPage}>
-        <h2>{name.toUpperCase()}</h2>
+        <ProductName>{name.toUpperCase()}</ProductName>
         <ProductImage src={image} alt="" />
         {rating.length == 0 ? (
           <RatingContainer>
@@ -50,12 +56,12 @@ export const ProductCard = (product: IProduct) => {
             </RatingContainer>
           </>
         )}
-        <h2>
+        <ProductPrice>
           {Intl.NumberFormat("pt-br", {
             style: "currency",
             currency: "BRL",
           }).format(price)}
-        </h2>
+        </ProductPrice>
       </ProductCardContainer>
     </>
   );

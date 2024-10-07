@@ -17,6 +17,14 @@ export const ProductCardContainer = styled.div`
   }
 `;
 
+export const ProductName = styled.h2`
+  color: #96795c;
+`;
+
+export const ProductPrice = styled.h2`
+  color: #4e3f30;
+`;
+
 export const ProductImage = styled.img`
   width: 100%;
   min-height: 250px;

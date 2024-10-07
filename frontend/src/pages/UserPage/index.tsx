@@ -3,7 +3,12 @@ import { Header } from "../../components/header";
 import { logout, userSelector } from "../../redux/user/slice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FirstGreetings, Main } from "./styles";
+import {
+  CreateStoreButton,
+  FirstGreetings,
+  LogoutButton,
+  Main,
+} from "./styles";
 import { StoresContainer } from "../../components/stores";
 
 export const UserPage = () => {
@@ -35,6 +40,10 @@ export const UserPage = () => {
 
     navigate("/sign");
   };
+
+  const goToCreateStore = () => {
+    navigate("/store/create");
+  };
   return (
     <>
       <Header></Header>
@@ -44,7 +53,10 @@ export const UserPage = () => {
           {user}
         </FirstGreetings>
         <StoresContainer></StoresContainer>
-        <button onClick={logoutUser}>Sair</button>
+        <CreateStoreButton onClick={goToCreateStore}>
+          Criar Loja
+        </CreateStoreButton>
+        <LogoutButton onClick={logoutUser}>Sair</LogoutButton>
       </Main>
     </>
   );

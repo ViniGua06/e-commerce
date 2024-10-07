@@ -28,13 +28,12 @@ export const StoresContainer = () => {
     <>
       <Title>Lojas</Title>
       <Container>
-        {stores.length > 0 ? (
+        {stores?.length > 0 ? (
           stores.map((item) => {
             return (
               <>
                 <StoreCard
                   _id={item._id}
-                  code={item.code}
                   desc={item.desc}
                   image={item.image}
                   name={item.name}
@@ -43,7 +42,7 @@ export const StoresContainer = () => {
             );
           })
         ) : (
-          <NoStoreAlert>Não há lojas</NoStoreAlert>
+          <NoStoreAlert>Loja não encontrada!</NoStoreAlert>
         )}
       </Container>
     </>
