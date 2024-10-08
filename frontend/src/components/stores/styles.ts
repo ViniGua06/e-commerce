@@ -13,6 +13,7 @@ export const Container = styled.div`
   display: flex;
   overflow-y: auto;
   gap: 1rem;
+  margin-bottom: 1rem;
 `;
 
 export const NoStoreAlert = styled.h1`

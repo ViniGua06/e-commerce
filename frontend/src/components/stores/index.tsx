@@ -12,7 +12,7 @@ export const StoresContainer = () => {
 
   const getUserStores = async () => {
     try {
-      const res = await fetch(`${apiUrl}/store/${user_id}`);
+      const res = await fetch(`${apiUrl}/stores/${user_id}`);
       const data = await res.json();
 
       setStores(data);

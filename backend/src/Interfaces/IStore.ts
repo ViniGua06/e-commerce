@@ -1,4 +1,4 @@
-export interface IStore extends Document {
+export interface IStore {
   name: string;
   desc: string;
   image: string;
