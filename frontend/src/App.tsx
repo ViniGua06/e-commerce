@@ -9,6 +9,7 @@ import { apiUrl } from "./url";
 import { StorePage } from "./pages/StorePage";
 import { ProductPage } from "./pages/ProductPage";
 import { CreateStorePage } from "./pages/CreateStorePage";
+import { CreateProductPage } from "./pages/CreateProductPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -61,6 +62,10 @@ function App() {
           <Route path="/store/:store_id" element={<StorePage />}></Route>
           <Route path="/store/create" element={<CreateStorePage />}></Route>
           <Route path="/product/:product_id" element={<ProductPage />}></Route>
+          <Route
+            path="/store/create-product"
+            element={<CreateProductPage />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>

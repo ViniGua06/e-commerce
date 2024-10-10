@@ -8,7 +8,13 @@ export class StoreController {
   getAllStores = async (req: Request, res: Response) => {
     const stores = await storeRepository.getAllStores();
 
-    res.json(200).json(stores);
+    res.status(200).json(stores);
+  };
+
+  deleteAll = async (req: Request, res: Response) => {
+    await storeRepository.deleteAllStores();
+
+    res.status(200).json({ message: "Todas as lojas deletadas!" });
   };
 
   getStorById = async (req: Request, res: Response) => {

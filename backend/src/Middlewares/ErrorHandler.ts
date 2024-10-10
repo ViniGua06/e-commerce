@@ -8,6 +8,7 @@ export const ErrorHandler = (
   res: Response,
   next: NextFunction
 ) => {
+  console.log(error);
   if (error instanceof BadRequestError) {
     return res.status(400).json({ message: error.message });
   } else {

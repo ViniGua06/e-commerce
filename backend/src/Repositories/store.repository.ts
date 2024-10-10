@@ -9,6 +9,10 @@ export class StoreRepository {
     return stores;
   };
 
+  deleteAllStores = async () => {
+    await Store.deleteMany().exec();
+  };
+
   getStoreById = async (store_id: string) => {
     const store = await Store.findById(new mongoose.Types.ObjectId(store_id));
     return store;
@@ -21,13 +25,17 @@ export class StoreRepository {
   };
 
   insertStore = async (store: Partial<IStore>) => {
-    const newStore = new Store({
-      name: store.name,
-      desc: store.desc,
-      image: store.image,
-      user_id: store.user_id,
-    });
+    try {
+      const newStore = new Store({
+        name: store.name,
+        desc: store.desc,
+        image: store.image,
+        user_id: store.user_id,
+      });
 
-    return await newStore.save();
+      return await newStore.save();
+    } catch (error) {
+      throw error;
+    }
   };
 }

@@ -15,10 +15,13 @@ import DefaultStoreImage from "../../../../public/store.svg";
 import { apiUrl } from "../../../url";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../../redux/user/slice";
+import { useNavigate } from "react-router-dom";
 
 export const CreateStoreForm = () => {
   const [imgUrl, setImgUrl] = useState<null | string>(null);
   const { user_id } = useSelector(userSelector);
+
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
@@ -54,6 +57,7 @@ export const CreateStoreForm = () => {
 
       if (res.status == 201) {
         alert("Loja criada!");
+        navigate("/user");
       } else {
         const response = await res.json();
         alert(await response.message);
@@ -82,6 +86,7 @@ export const CreateStoreForm = () => {
         <FormLabel>Imagem da Loja</FormLabel>
         <FileContainer>
           <InputFile
+            accept=".png, .jpg, .jpeg"
             onChange={(e) => changeImage(e)}
             type="file"
             required
