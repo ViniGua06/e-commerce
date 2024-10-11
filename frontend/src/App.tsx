@@ -63,7 +63,7 @@ function App() {
           <Route path="/store/create" element={<CreateStorePage />}></Route>
           <Route path="/product/:product_id" element={<ProductPage />}></Route>
           <Route
-            path="/store/create-product"
+            path="/store/:store_id/create-product/:admin"
             element={<CreateProductPage />}
           ></Route>
         </Routes>

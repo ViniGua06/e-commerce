@@ -47,7 +47,7 @@ export const FileContainer = styled.div`
 `;
 
 export const InputFile = styled.input`
-  width: 17%;
+  width: 39%;
   outline: none;
 `;
 

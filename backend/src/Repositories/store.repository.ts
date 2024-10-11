@@ -31,6 +31,7 @@ export class StoreRepository {
         desc: store.desc,
         image: store.image,
         user_id: store.user_id,
+      
       });
 
       return await newStore.save();

@@ -1,5 +1,7 @@
 import Express, { Request, Response } from "express";
 
+import { Store } from "./Models/Store";
+
 import Cors from "cors";
 
 import bodyParser from "body-parser";
@@ -20,8 +22,9 @@ export const mongo = mongoose
   .connect(
     "mongodb+srv://22200460:uoQfc8BcFoIL6pce@cluster0.kiull.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
   )
-  .then(() => {
+  .then(async() => {
     console.log("Conectado ao mongo!");
+    
   })
   .catch((e) => console.log(e));
 

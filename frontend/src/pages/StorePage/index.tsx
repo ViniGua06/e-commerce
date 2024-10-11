@@ -43,7 +43,7 @@ export const StorePage = () => {
   };
 
   const goToCreateProduct = () => {
-    navigate("/store/create-product");
+    navigate(`/store/${store_id}/create-product/${store?.user_id}`);
   };
 
   useEffect(() => {
@@ -81,6 +81,7 @@ export const StorePage = () => {
                 <>
                   {" "}
                   <Button
+                    type="button"
                     text={"Criar Produto"}
                     onClick={goToCreateProduct}
                   ></Button>
