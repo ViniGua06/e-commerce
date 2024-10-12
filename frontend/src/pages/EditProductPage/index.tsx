@@ -1,10 +1,10 @@
 import { FormEvent, useEffect, useState } from "react";
-import {
-  FileContainer,
-  InputFile,
-  SelectedImage,
-} from "../createStoreForm/styles";
-
+import { Header } from "../../components/header";
+import { Main } from "../Home/styles";
+import { useSelector } from "react-redux";
+import { userSelector } from "../../redux/user/slice";
+import { useNavigate, useParams } from "react-router-dom";
+import { apiUrl } from "../../url";
 import {
   AddTagContainer,
   AddTagImage,
@@ -17,19 +17,19 @@ import {
   Tag,
   TagsContainer,
   TextArea,
-} from "./styles";
+} from "../../components/form/createProductForm/styles";
+import {
+  FileContainer,
+  InputFile,
+  SelectedImage,
+} from "../../components/form/createStoreForm/styles";
+import { Button } from "../../components/button";
 
-import DefaultStoreImage from "../../../../public/book.svg";
-import AddIcon from "../../../../public/add.svg";
-import RemoveTagIcon from "../../../../public/x.svg";
+import DefaultStoreImage from "../../../../../public/book.svg";
+import AddIcon from "../../../public/add.svg";
+import RemoveTagIcon from "../../../public/x.svg";
 
-import { Button } from "../../button";
-import { useNavigate, useParams } from "react-router-dom";
-import { apiUrl } from "../../../url";
-import { useSelector } from "react-redux";
-import { userSelector } from "../../../redux/user/slice";
-
-export const CreateProductForm = () => {
+export const EditProductPage = () => {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0.1);
@@ -162,9 +162,7 @@ export const CreateProductForm = () => {
             type="file"
             required
           ></InputFile>
-          <SelectedImage
-            src={imgUrl ? imgUrl : DefaultStoreImage}
-          ></SelectedImage>
+          <SelectedImage src={imgUrl!}></SelectedImage>
         </FileContainer>
         <Label>Tags</Label>
         <AddTagContainer>

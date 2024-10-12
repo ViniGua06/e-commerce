@@ -6,6 +6,7 @@ const initialState = {
   user: "",
   email: "",
   password: "",
+  image: "",
   stores: [],
   logged: false,
 };
@@ -23,6 +24,7 @@ export const userSlice = createSlice({
         password: payload.password,
         stores: payload.stores,
         logged: true,
+        image: payload.image,
       };
     },
 

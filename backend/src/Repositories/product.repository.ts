@@ -36,6 +36,7 @@ export class ProductRepository {
       store: store_id,
       tags: product.tags,
       image: product.image,
+      desc: product.desc,
     });
 
     return await newProduct.save();
@@ -53,6 +54,7 @@ export class ProductRepository {
         price: product.price,
         quantity: product.quantity,
         image: product.image,
+        desc: product.desc,
       },
       {
         new: true,

@@ -23,6 +23,7 @@ export const StoreCardTitle = styled.h2`
 export const ImageContainer = styled.div`
   width: 100%;
   height: 80%;
+  object-fit: cover;
 
   & > img {
     width: 100%;

@@ -9,3 +9,4 @@ userRouter.get("/users", userController.getUsers);
 userRouter.get("/user/:id", userController.getUserById);
 userRouter.post("/user/create", userController.createUser);
 userRouter.post("/user/login", userController.loginUser);
+userRouter.post("/user/:user_id/setimage", userController.setUserImage);

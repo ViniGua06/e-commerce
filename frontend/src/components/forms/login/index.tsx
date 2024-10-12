@@ -12,8 +12,6 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector(userSelector);
-
   const login = async (e: FormEvent) => {
     try {
       e.preventDefault();

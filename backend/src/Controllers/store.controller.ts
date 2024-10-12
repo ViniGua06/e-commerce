@@ -17,11 +17,15 @@ export class StoreController {
     res.status(200).json({ message: "Todas as lojas deletadas!" });
   };
 
-  getStorById = async (req: Request, res: Response) => {
-    const { store_id } = req.params;
-    const store = await storeRepository.getStoreById(store_id);
+  getStorById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { store_id } = req.params;
+      const store = await storeRepository.getStoreById(store_id);
 
-    res.status(200).json(store);
+      res.status(200).json(store);
+    } catch (error) {
+      next(error);
+    }
   };
 
   getStoresByUserId = async (req: Request, res: Response) => {

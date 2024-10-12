@@ -31,6 +31,10 @@ const productScheme = new mongoose.Schema<IProduct>({
     type: String,
     required: true,
   },
+  desc: {
+    type: String,
+    required: true,
+  },
 });
 
 export const Product = mongoose.model<IProduct>("Product", productScheme);

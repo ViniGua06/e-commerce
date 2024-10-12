@@ -7,4 +7,5 @@ export interface IProduct {
   tags: string[];
   store: string;
   image: string;
+  desc: string;
 }

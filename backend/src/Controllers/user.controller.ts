@@ -38,6 +38,19 @@ export class UserController {
     }
   };
 
+  setUserImage = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { user_id } = req.params;
+      const { image } = req.body;
+
+      await userRepository.setUserImage(user_id, image);
+
+      res.status(200).json({ message: "Foto de Perfil alterada!" });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   loginUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { email, password } = req.body;

@@ -9,4 +9,5 @@ export interface IProduct extends Document {
   tags: string[];
   store: string;
   image: string;
+  desc: string;
 }

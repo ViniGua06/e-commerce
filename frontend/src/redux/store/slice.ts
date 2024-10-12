@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IStore } from "../../models/Store";
 import { RootState } from "../store";
 
-const initialState: IStore = {
+const initialState = {
   _id: "",
   name: "",
   desc: "",

@@ -11,12 +11,18 @@ import emptyStar from "../../../../public/stars/empty.star.svg";
 
 import { useEffect, useState } from "react";
 import { Stars } from "../../ratingStars";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { apiUrl } from "../../../url";
+import { IStore } from "../../../models/Store";
+import { useSelector } from "react-redux";
+import { userSelector } from "../../../redux/user/slice";
 
 export const ProductCard = (product: IProduct) => {
   const { name, price, quantity, rating, store, tags, image, _id } = product;
   const [average, setAverage] = useState(0);
   const navigate = useNavigate();
+
+  const { user_id } = useSelector(userSelector);
 
   const calcAverage = () => {
     let soma = 0;
@@ -34,6 +40,58 @@ export const ProductCard = (product: IProduct) => {
   const goToProductPage = () => {
     navigate(`/product/${_id}`);
   };
+
+  const { product_id } = useParams();
+  const [next, setNext] = useState(false);
+  const [producto, setProduct] = useState<IProduct>();
+
+  const updateProduct = async () => {
+    try {
+      const res = await fetch(`${apiUrl}/productbyid/${product_id}`);
+
+      const data = await res.json();
+
+      if (res.status == 200) {
+        setProduct(data);
+        setNext(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const [storea, setStore] = useState<IStore>();
+
+  const [allowed, setAllowed] = useState(false);
+
+  const getStores = async () => {
+    try {
+      const res = await fetch(`${apiUrl}/store/${product?.store}`);
+      const data = await res.json();
+
+      setStore(data);
+      setNext(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const checkIfIsAdmin = () => {
+    if (storea?.user_id == user_id) {
+      setAllowed(true);
+      alert(allowed);
+    }
+  };
+
+  useEffect(() => {
+    updateProduct();
+  }, []);
+
+  useEffect(() => {
+    if (next) getStores();
+
+    checkIfIsAdmin();
+  }, []);
 
   return (
     <>

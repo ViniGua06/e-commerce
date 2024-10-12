@@ -15,6 +15,14 @@ export const ProductCardContainer = styled.div`
     cursor: pointer;
     transform: scale(1.04);
   }
+
+  @media (max-width: 1360px) {
+    width: 280px;
+
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
 `;
 
 export const ProductName = styled.h2`
@@ -29,6 +37,12 @@ export const ProductImage = styled.img`
   width: 100%;
   min-height: 250px;
   max-height: 250px;
+  object-fit: cover;
+
+  @media (max-width: 1360px) {
+    min-height: 200px;
+    max-height: 200px;
+  }
 `;
 
 export const RatingContainer = styled.div`
@@ -38,4 +52,8 @@ export const RatingContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   margin-block: 1rem;
+
+  @media (max-width: 1360px) {
+    font-size: smaller;
+  }
 `;

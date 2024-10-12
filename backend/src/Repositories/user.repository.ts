@@ -17,7 +17,7 @@ export class UserRepository {
     return user;
   };
 
-  insertUser = async (user: IUser) => {
+  insertUser = async (user: Omit<IUser, "image">) => {
     const alreadyIn = await User.findOne({ email: user.email });
 
     if (alreadyIn !== null) throw new BadRequestError("Email já cadastrado!");
@@ -27,6 +27,15 @@ export class UserRepository {
     insertedUser.save();
 
     return insertedUser;
+  };
+
+  setUserImage = async (user_id: string, image: string) => {
+    const user = await User.findOne({ _id: user_id });
+    if (!user) throw new BadRequestError("Usuário não encontrado");
+
+    user.image = image;
+
+    user.save();
   };
 
   loginUser = async (email: string, password: string) => {

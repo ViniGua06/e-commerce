@@ -4,7 +4,14 @@ import { useEffect, useState } from "react";
 import { IStore } from "../../models/Store";
 import { Header } from "../../components/header";
 import { IProduct } from "../../models/Product";
-import { Main, ProductContainer } from "./styles";
+import {
+  Container,
+  Main,
+  ProductContainer,
+  ProductTitle,
+  StoreImage,
+  StoreTitle,
+} from "./styles";
 import { ProductCard } from "../../components/cards/productCard";
 import { Button } from "../../components/button";
 import { useSelector } from "react-redux";
@@ -59,23 +66,39 @@ export const StorePage = () => {
           products.length > 0 ? (
             products.map((item) => {
               return (
-                <ProductContainer>
-                  <ProductCard
-                    _id={item._id}
-                    image={item.image}
-                    name={item.name}
-                    price={item.price}
-                    quantity={item.quantity}
-                    rating={item.rating}
-                    store={item.store}
-                    tags={item.tags}
-                    key={item._id}
-                  ></ProductCard>
-                </ProductContainer>
+                <>
+                  <Container>
+                    <StoreImage src={store.image}></StoreImage>
+                    <StoreTitle>{store?.name.toUpperCase()}</StoreTitle>
+                  </Container>
+
+                  <ProductTitle>Produtos</ProductTitle>
+
+                  <ProductContainer>
+                    <ProductCard
+                      desc={item.desc}
+                      _id={item._id}
+                      image={item.image}
+                      name={item.name}
+                      price={item.price}
+                      quantity={item.quantity}
+                      rating={item.rating}
+                      store={item.store}
+                      tags={item.tags}
+                      key={item._id}
+                    ></ProductCard>
+                  </ProductContainer>
+                </>
               );
             })
           ) : (
             <>
+              <Container>
+                <StoreImage src={store.image}></StoreImage>
+                <StoreTitle>{store?.name.toUpperCase()}</StoreTitle>
+              </Container>
+
+              <ProductTitle>Produtos</ProductTitle>
               <h1>Nenhum produto encontrado!</h1>
               {user_id == store.user_id ? (
                 <>
@@ -90,7 +113,7 @@ export const StorePage = () => {
             </>
           )
         ) : (
-          <h2>Nao existe</h2>
+          <h2>Loja não existe</h2>
         )}
       </Main>
     </>

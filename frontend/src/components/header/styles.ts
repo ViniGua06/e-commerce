@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HeaderS = styled.div`
+export const HeaderS = styled.header`
   width: 100%;
   height: 90px;
   background: #4e3f30;
@@ -8,6 +8,7 @@ export const HeaderS = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-inline: 3rem;
+  padding-right: 0;
 `;
 
 export const Title = styled.h1`
@@ -40,6 +41,7 @@ export const NavList = styled.ul`
     place-items: center;
     color: #a5b3aa;
     cursor: pointer;
+    height: 100%;
   }
 
   & > a {

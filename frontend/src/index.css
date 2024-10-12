@@ -9,6 +9,10 @@
   font-style: normal;
 }
 
+body {
+  background: #f5f0e1;
+}
+
 ul {
   list-style: none;
 }

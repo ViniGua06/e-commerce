@@ -10,6 +10,7 @@ import { StorePage } from "./pages/StorePage";
 import { ProductPage } from "./pages/ProductPage";
 import { CreateStorePage } from "./pages/CreateStorePage";
 import { CreateProductPage } from "./pages/CreateProductPage";
+import { EditProductPage } from "./pages/EditProductPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
             email: data.email,
             password: data.password,
             stores: data.stores,
+            image: data.image,
           })
         );
       }
@@ -65,6 +67,10 @@ function App() {
           <Route
             path="/store/:store_id/create-product/:admin"
             element={<CreateProductPage />}
+          ></Route>
+          <Route
+            path="/product/edit/product_id"
+            element={<EditProductPage />}
           ></Route>
         </Routes>
       </BrowserRouter>
