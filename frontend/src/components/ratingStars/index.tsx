@@ -3,7 +3,8 @@ import emptyStar from "../../../public/stars/empty.star.svg";
 import fullStar from "../../../public/stars/full.star.svg";
 
 export const Stars = ({ average }: { average: number }) => {
-  return average == 1 && average < 1.2 ? (
+  console.log(average);
+  return average >= 1 && average < 1.2 ? (
     <>
       <img src={fullStar} height={"100%"} alt="" />
       <img src={emptyStar} height={"100%"} alt="" />
@@ -74,6 +75,14 @@ export const Stars = ({ average }: { average: number }) => {
       <img src={fullStar} height={"100%"} alt="" />
       <img src={fullStar} height={"100%"} alt="" />
       <img src={fullStar} height={"100%"} alt="" />
+    </>
+  ) : average < 1 ? (
+    <>
+      <img src={halfStar} height={"100%"} alt="" />
+      <img src={emptyStar} height={"100%"} alt="" />
+      <img src={emptyStar} height={"100%"} alt="" />
+      <img src={emptyStar} height={"100%"} alt="" />
+      <img src={emptyStar} height={"100%"} alt="" />
     </>
   ) : null;
 };
