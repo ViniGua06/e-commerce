@@ -37,8 +37,8 @@ export const mongo = mongoose
   })
   .catch((e) => console.log(e));
 
-app.use(productRouter);
 app.use(userRouter);
+app.use(productRouter);
 app.use(storeRouter);
 
 app.use(ErrorHandler);

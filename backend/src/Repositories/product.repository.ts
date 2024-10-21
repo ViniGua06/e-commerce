@@ -12,12 +12,16 @@ export class ProductRepository {
   };
 
   getProductById = async (product_id: string) => {
-    console.log(product_id);
-    const product = await Product.findOne({
-      _id: new ObjectId(product_id),
-    });
+    try {
+      console.log(product_id);
+      const product = await Product.findOne({
+        _id: product_id,
+      });
 
-    return product;
+      return product;
+    } catch (error) {
+      throw error;
+    }
   };
 
   getProductsByStoreId = async (store_id: string) => {
