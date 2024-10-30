@@ -29,6 +29,7 @@ export const LoginForm = () => {
       const data = await res.json();
 
       alert(data.message);
+      alert(data.token);
 
       if (res.status == 200) {
         dispatch(
@@ -38,6 +39,7 @@ export const LoginForm = () => {
             email: data.user.email,
             password: data.user.password,
             stores: data.user.stores,
+            token: data.token,
           })
         );
 

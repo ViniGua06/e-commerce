@@ -12,7 +12,7 @@ import {
 import { StoresContainer } from "../../components/stores";
 
 export const UserPage = () => {
-  const { user, logged } = useSelector(userSelector);
+  const { user, logged, token, email: mail } = useSelector(userSelector);
 
   const [greetings, setGreetings] = useState("");
 

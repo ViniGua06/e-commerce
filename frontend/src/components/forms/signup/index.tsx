@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { apiUrl } from "../../../url";
 import { Form, Input, SubmitButton } from "./styles";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../../redux/user/slice";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser, userSelector } from "../../../redux/user/slice";
 import { useNavigate } from "react-router-dom";
 
 export const SignUpForm = () => {
@@ -13,6 +13,8 @@ export const SignUpForm = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // const { token, user, email: mail, logged } = useSelector(userSelector);
 
   const signUp = async (e: any) => {
     try {
@@ -32,7 +34,11 @@ export const SignUpForm = () => {
 
         const data = await res.json();
 
+        const token = data.token;
+
         alert(data.message);
+
+        localStorage.setItem("token", token);
 
         if (res.status == 201) {
           dispatch(
@@ -42,6 +48,7 @@ export const SignUpForm = () => {
               email: email,
               password: password,
               stores: data.user.stores,
+              token: token,
             })
           );
 

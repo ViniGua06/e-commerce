@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { ProductController } from "../Controllers/product.controller";
+import { VerifyToken } from "../Middlewares/JwtVerifyier";
 
 export const productRouter = Router();
 
@@ -13,6 +14,7 @@ productRouter.get(
 );
 productRouter.post(
   "/product/create/:store_id",
+  VerifyToken,
   productController.createProduct
 );
 productRouter.post("/product/:product_id/tag/add");

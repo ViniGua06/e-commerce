@@ -16,9 +16,11 @@ import { useNavigate } from "react-router-dom";
 
 export const ChangePfpForm = () => {
   const [imgUrl, setImgUrl] = useState<null | string>(null);
-  const { user_id, image } = useSelector(userSelector);
+  const { user_id, image, token } = useSelector(userSelector);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    console.log(token);
+  }, []);
 
   const changeImage = (e: any) => {
     const file = e.target.files[0];
@@ -40,6 +42,7 @@ export const ChangePfpForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "x-acess-token": localStorage.getItem("token"),
         },
         body: JSON.stringify({
           image: imgUrl,

@@ -1,8 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { UserRepository } from "../Repositories/user.repository";
 import { IUser } from "../Interfaces/IUser";
+import { JwtServices } from "../Services/Jwt.services";
 
 const userRepository = new UserRepository();
+const jwtServices = new JwtServices();
 
 export class UserController {
   getUsers = async (req: Request, res: Response) => {
@@ -29,9 +31,12 @@ export class UserController {
 
       const insertedUser = await userRepository.insertUser(user);
 
+      const token = jwtServices.createToken(insertedUser._id.toString());
+
       res.status(201).json({
         message: `Usuário ${insertedUser.name} cadastrado!`,
         user: insertedUser,
+        token: token,
       });
     } catch (error) {
       next(error);
@@ -55,11 +60,13 @@ export class UserController {
     try {
       const { email, password } = req.body;
 
-      console.log(req.body);
-
       const user = await userRepository.loginUser(email, password);
 
-      res.status(200).json({ message: "Usuário logado!", user: user });
+      const token = jwtServices.createToken(user._id.toString());
+
+      res
+        .status(200)
+        .json({ message: "Usuário logado!", user: user, token: token });
     } catch (error) {
       next(error);
     }

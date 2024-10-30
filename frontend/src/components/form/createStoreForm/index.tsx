@@ -46,6 +46,7 @@ export const CreateStoreForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "x-acess-token": localStorage.getItem("token"),
         },
         body: JSON.stringify({
           name: name,

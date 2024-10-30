@@ -82,6 +82,7 @@ export const CreateProductForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "x-acess-token": localStorage.getItem("token"),
         },
         body: JSON.stringify({
           name: name,

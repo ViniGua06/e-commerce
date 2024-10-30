@@ -46,6 +46,7 @@ export const Home = () => {
                     store={item.store}
                     tags={item.tags}
                     image={item.image}
+                    desc={item.desc}
                   ></ProductCard>
                 </>
               );
@@ -55,7 +56,6 @@ export const Home = () => {
               <h1>Nenhum produto encontrado!</h1>
             </>
           )}
-          {}
         </ProductContainer>
       </Main>
     </>
