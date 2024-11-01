@@ -25,7 +25,7 @@ export const SearchBar = ({
 
   useEffect(() => {
     const fuseInstance = new Fuse(products, {
-      keys: ["name"],
+      keys: ["name", "tags"],
       threshold: 0.3,
     });
 
@@ -70,6 +70,7 @@ export const SearchBar = ({
     <GlassContainer>
       <SearchBarInput
         ref={inputRef}
+        placeholder="Digite o produto ou uma tag"
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
