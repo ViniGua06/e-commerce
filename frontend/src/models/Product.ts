@@ -8,4 +8,5 @@ export interface IProduct {
   store: string;
   image: string;
   desc: string;
+  demand?: number;
 }

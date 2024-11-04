@@ -22,13 +22,14 @@ import emptyStar from "../../../public/stars/empty.star.svg";
 import fullStar from "../../../public/stars/full.star.svg";
 import { Graphic } from "../../components/graphic";
 import { IStore } from "../../models/Store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../redux/user/slice";
 import { Button } from "../../components/button";
+import { addProduct, productSelector } from "../../redux/cart/slice";
 
 export const ProductPage = () => {
   const { product_id } = useParams();
-  const [product, setProduct] = useState<IProduct | null>(null);
+  const [product, setProduct] = useState<IProduct>();
   const [average, setAverage] = useState(0);
   const [store, setStore] = useState<IStore>();
 
@@ -125,9 +126,22 @@ export const ProductPage = () => {
     navigate("/search");
   };
 
+  // Testing reducer
+  const { products } = useSelector(productSelector);
+  const dispatch = useDispatch();
+
+  const addProductToCart = () => {
+    dispatch(addProduct({ product: product! }));
+  };
+
+  useEffect(() => {
+    console.log(products, "reducer");
+  }, []);
+
   return (
     <>
       <Header></Header>
+      <button onClick={addProductToCart}>Adicionar</button>
       <Main>
         {product != null ? (
           <>
