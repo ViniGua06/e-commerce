@@ -112,3 +112,32 @@ export const DescriptionContainer = styled.div`
   color: #4e3f30;
   overflow-y: auto;
 `;
+
+export const BuyButton = styled.button`
+  padding: 0.8rem 0.8rem;
+  background: rgb(237, 161, 55);
+  color: whitesmoke;
+  border: none;
+  border-radius: 1.4rem;
+  margin-top: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+export const AddToCartButton = styled.button`
+  padding: 0.8rem 0.8rem;
+  background: #4e3f30;
+  color: whitesmoke;
+  border: none;
+  border-radius: 1.4rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  margin-left: 1rem;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;

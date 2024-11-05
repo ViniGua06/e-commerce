@@ -11,6 +11,7 @@
 
 body {
   background: #f5f0e1;
+  overflow: hidden;
 }
 
 ul {

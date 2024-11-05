@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { IProduct } from "../../models/Product";
 import { Header } from "../../components/header";
 import {
+  AddToCartButton,
+  BuyButton,
   DescriptionContainer,
   ImageContainer,
   Main,
@@ -25,7 +27,15 @@ import { IStore } from "../../models/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../redux/user/slice";
 import { Button } from "../../components/button";
-import { addProduct, productSelector } from "../../redux/cart/slice";
+import {
+  addProduct,
+  decreaseDemand,
+  increaseDemand,
+  productSelector,
+} from "../../redux/cart/slice";
+import Sheet from "styled-components/dist/sheet";
+import { SheetComponent } from "../../components/sheet";
+import { activeSheet } from "../../redux/sheet/slice";
 
 export const ProductPage = () => {
   const { product_id } = useParams();
@@ -35,7 +45,7 @@ export const ProductPage = () => {
 
   const [rate, setRate] = useState(0);
 
-  const { user_id } = useSelector(userSelector);
+  const { user_id, logged } = useSelector(userSelector);
 
   const [allowed, setAllowed] = useState(false);
 
@@ -126,22 +136,29 @@ export const ProductPage = () => {
     navigate("/search");
   };
 
+  // Reducer actions
+
+  const buyProduct = () => {
+    if (!logged) {
+      navigate("/sign");
+    }
+  };
+
   // Testing reducer
   const { products } = useSelector(productSelector);
   const dispatch = useDispatch();
 
   const addProductToCart = () => {
-    dispatch(addProduct({ product: product! }));
+    dispatch(activeSheet());
+    // dispatch(addProduct({ product: product! }));
   };
 
-  useEffect(() => {
-    console.log(products, "reducer");
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
       <Header></Header>
-      <button onClick={addProductToCart}>Adicionar</button>
+      <SheetComponent></SheetComponent>
       <Main>
         {product != null ? (
           <>
@@ -241,6 +258,13 @@ export const ProductPage = () => {
                     currency: "BRL",
                   }).format(product.price)}
                 </ProductPrice>
+                <h4 style={{ color: "#4e3f30" }}>
+                  Quantidade: {product.quantity}
+                </h4>
+                <BuyButton onClick={buyProduct}>Comprar</BuyButton>
+                <AddToCartButton onClick={addProductToCart}>
+                  Adicionar ao carrinho
+                </AddToCartButton>
                 <DescriptionContainer>{product.desc}</DescriptionContainer>
               </SecondContainer>
             </ProductPageContainer>

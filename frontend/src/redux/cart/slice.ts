@@ -28,7 +28,8 @@ const slice = createSlice({
 
       const product = state.products.findIndex((p) => p._id == id);
 
-      if (!product) {
+      if (product == -1) {
+        console.log("PRIMERI", product);
         return;
       }
 
