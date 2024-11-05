@@ -14,7 +14,6 @@ const slice = createSlice({
   initialState: initialState,
   name: "Cart",
   reducers: {
-    // Reducers
     addProduct(state, { payload }: PayloadAction<{ product: IProduct }>) {
       if (state.products.find((p) => p._id == payload.product._id)) {
         return;

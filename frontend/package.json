@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "fuse.js": "^7.0.0",
+    "lucide-react": "^0.454.0",
     "mongodb": "^6.9.0",
     "node": "^22.8.0",
     "plotly.js": "^2.35.2",
