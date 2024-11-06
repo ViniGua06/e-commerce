@@ -18,6 +18,7 @@ const slice = createSlice({
       if (state.products.find((p) => p._id == payload.product._id)) {
         return;
       }
+      payload.product.demand = 1;
 
       state.products.push(payload.product);
     },
@@ -28,7 +29,6 @@ const slice = createSlice({
       const product = state.products.findIndex((p) => p._id == id);
 
       if (product == -1) {
-        console.log("PRIMERI", product);
         return;
       }
 
@@ -64,7 +64,7 @@ const slice = createSlice({
   },
 });
 
-export const productReducer = slice.reducer;
+export const cartReducer = slice.reducer;
 export const { addProduct, increaseDemand, clearCart, decreaseDemand } =
   slice.actions;
-export const productSelector = (state: RootState) => state.product;
+export const productSelector = (state: RootState) => state.cart;

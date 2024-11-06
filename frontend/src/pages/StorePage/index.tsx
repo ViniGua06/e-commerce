@@ -5,6 +5,7 @@ import { IStore } from "../../models/Store";
 import { Header } from "../../components/header";
 import { IProduct } from "../../models/Product";
 import {
+  AddProductButton,
   Container,
   Main,
   ProductContainer,
@@ -67,6 +68,10 @@ export const StorePage = () => {
             products.map((item) => {
               return (
                 <>
+                  {store._id == user_id ? (
+                    <AddProductButton>Adicionar Produto</AddProductButton>
+                  ) : null}
+
                   <Container>
                     <StoreImage src={store.image}></StoreImage>
                     <StoreTitle>{store?.name.toUpperCase()}</StoreTitle>
@@ -102,7 +107,6 @@ export const StorePage = () => {
               <h1>Nenhum produto encontrado!</h1>
               {user_id == store.user_id ? (
                 <>
-                  {" "}
                   <Button
                     type="button"
                     text={"Criar Produto"}

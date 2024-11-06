@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
+  ImageContainer,
+  ProductContainer,
   ProductsContainer,
+  SecondContainer,
   SheetBackground,
   SheetContainer,
   Title,
@@ -10,6 +13,7 @@ import { desactiveSheet, sheetSelector } from "../../redux/sheet/slice";
 
 import { X } from "lucide-react";
 import { productSelector } from "../../redux/cart/slice";
+import { useEffect } from "react";
 
 export const SheetComponent = () => {
   const { active } = useSelector(sheetSelector);
@@ -25,6 +29,10 @@ export const SheetComponent = () => {
   const stopPropagation = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
+
+  useEffect(() => {
+    console.log(products, "VAI");
+  }, []);
   return (
     <>
       <SheetBackground active={active} onClick={closeModal}>
@@ -43,10 +51,16 @@ export const SheetComponent = () => {
             {products.map((item) => {
               return (
                 <>
-                  <div key={item._id}>
-                    <h1>{item.name}</h1>
-                    <img src={item.image} alt="" height={70} />
-                  </div>
+                  <ProductContainer key={item._id}>
+                    <ImageContainer>
+                      <img src={item.image} alt="" height={70} />
+                    </ImageContainer>
+                    <SecondContainer>
+                      <h1>{item.name.toUpperCase()}</h1>
+
+                      <h2>{item.demand}</h2>
+                    </SecondContainer>
+                  </ProductContainer>
                 </>
               );
             })}

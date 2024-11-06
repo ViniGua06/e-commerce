@@ -49,3 +49,33 @@ export const ProductsContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
+
+export const ProductContainer = styled.div`
+  width: 100%;
+  height: 170px;
+  border: solid 1px;
+  display: flex;
+`;
+
+export const ImageContainer = styled.div`
+  width: 50%;
+  height: 100%;
+
+  & > img {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+  }
+`;
+
+export const SecondContainer = styled.div`
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  & > h1 {
+    color: #4e3f30;
+    font-weight: 500;
+  }
+`;

@@ -35,3 +35,21 @@ export const ProductContainer = styled.section`
   width: 100%;
   height: fit-content;
 `;
+
+export const AddProductButton = styled.button`
+  border-radius: 3rem;
+  font-size: 1.6rem;
+  letter-spacing: 0;
+  padding: 1rem;
+  color: white;
+  background: #96795c;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  left: 2rem;
+  bottom: 2rem;
+
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+`;

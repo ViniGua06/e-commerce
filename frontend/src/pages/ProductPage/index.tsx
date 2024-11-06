@@ -145,12 +145,12 @@ export const ProductPage = () => {
   };
 
   // Testing reducer
-  const { products } = useSelector(productSelector);
   const dispatch = useDispatch();
 
   const addProductToCart = () => {
     dispatch(activeSheet());
-    // dispatch(addProduct({ product: product! }));
+
+    dispatch(addProduct({ product: product! }));
   };
 
   useEffect(() => {}, []);
