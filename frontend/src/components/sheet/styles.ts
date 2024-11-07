@@ -46,20 +46,27 @@ export const Title = styled.h1`
 `;
 
 export const ProductsContainer = styled.div`
+  margin-top: 1rem;
   width: 100%;
-  height: 100%;
+  height: 800%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  gap: 1rem;
 `;
 
 export const ProductContainer = styled.div`
   width: 100%;
-  height: 170px;
-  border: solid 1px;
+  height: 180px;
   display: flex;
+  gap: 1rem;
 `;
 
 export const ImageContainer = styled.div`
   width: 50%;
   height: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
 
   & > img {
     height: 100%;
@@ -74,8 +81,18 @@ export const SecondContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > h1 {
+  & > * {
     color: #4e3f30;
     font-weight: 500;
+  }
+`;
+
+export const PlusMinusContainer = styled.div`
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  & > *:hover {
+    cursor: pointer;
+    transform: scale(1.1);
   }
 `;

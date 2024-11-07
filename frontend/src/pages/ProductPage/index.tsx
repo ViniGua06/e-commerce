@@ -147,13 +147,16 @@ export const ProductPage = () => {
   // Testing reducer
   const dispatch = useDispatch();
 
+  const { products } = useSelector(productSelector);
+
   const addProductToCart = () => {
     dispatch(activeSheet());
-
     dispatch(addProduct({ product: product! }));
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(products, "UABIYUBOU");
+  }, []);
 
   return (
     <>

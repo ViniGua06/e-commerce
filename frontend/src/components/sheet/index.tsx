@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   ImageContainer,
+  PlusMinusContainer,
   ProductContainer,
   ProductsContainer,
   SecondContainer,
@@ -11,8 +12,12 @@ import {
 } from "./styles";
 import { desactiveSheet, sheetSelector } from "../../redux/sheet/slice";
 
-import { X } from "lucide-react";
-import { productSelector } from "../../redux/cart/slice";
+import { X, Plus, Minus } from "lucide-react";
+import {
+  decreaseDemand,
+  increaseDemand,
+  productSelector,
+} from "../../redux/cart/slice";
 import { useEffect } from "react";
 
 export const SheetComponent = () => {
@@ -58,7 +63,20 @@ export const SheetComponent = () => {
                     <SecondContainer>
                       <h1>{item.name.toUpperCase()}</h1>
 
-                      <h2>{item.demand}</h2>
+                      <h3>Quantidade: {item.demand}</h3>
+
+                      <PlusMinusContainer>
+                        <Plus
+                          onClick={() =>
+                            dispatch(increaseDemand({ id: item._id }))
+                          }
+                        ></Plus>
+                        <Minus
+                          onClick={() =>
+                            dispatch(decreaseDemand({ id: item._id }))
+                          }
+                        ></Minus>
+                      </PlusMinusContainer>
                     </SecondContainer>
                   </ProductContainer>
                 </>
