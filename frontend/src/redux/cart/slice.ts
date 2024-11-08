@@ -15,47 +15,50 @@ const slice = createSlice({
   name: "Cart",
   reducers: {
     addProduct(state, { payload }: PayloadAction<{ product: IProduct }>) {
-      if (state.products.find((p) => p._id == payload.product._id)) {
+      if (state.products.find((p) => p._id === payload.product._id)) {
         return;
       }
-      payload.product.demand = 1;
 
-      state.products.push(payload.product);
+      const newProduct: IProduct = {
+        ...payload.product,
+        priceAfterDemand: payload.product.price,
+        demand: 1,
+      };
+
+      state.products.push(newProduct);
     },
 
     increaseDemand(state, { payload }: PayloadAction<{ id: string }>) {
-      const id = payload.id;
+      const productIndex = state.products.findIndex(
+        (p) => p._id === payload.id
+      );
 
-      const product = state.products.findIndex((p) => p._id == id);
-
-      if (product == -1) {
+      if (productIndex === -1) {
         return;
       }
 
-      if (
-        state.products[product].quantity <
-        state.products[product].demand! + 1
-      ) {
-        return;
+      const product = state.products[productIndex];
+      if (product.quantity && product.demand! < product.quantity) {
+        product.demand! += 1;
+        product.priceAfterDemand = product.price * product.demand!;
       }
-
-      state.products[product].demand! += 1;
     },
 
     decreaseDemand(state, { payload }: PayloadAction<{ id: string }>) {
-      const product = state.products.find((p) => p._id == payload.id);
+      const productIndex = state.products.findIndex(
+        (p) => p._id === payload.id
+      );
 
-      if (!product) return;
+      if (productIndex === -1) return;
 
-      if (product.demand! - 1 == 0) {
-        const filteredArray = state.products.filter((p) => p._id != payload.id);
-        state.products = filteredArray;
-        return;
+      const product = state.products[productIndex];
+
+      if (product.demand! > 1) {
+        product.demand! -= 1;
+        product.priceAfterDemand = product.price * product.demand!;
+      } else {
+        state.products.splice(productIndex, 1);
       }
-
-      const index = state.products.findIndex((p) => p._id == payload.id);
-
-      state.products[index].demand! -= 1;
     },
 
     clearCart(state) {

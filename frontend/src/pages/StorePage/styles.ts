@@ -34,6 +34,9 @@ export const StoreImage = styled.img`
 export const ProductContainer = styled.section`
   width: 100%;
   height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 `;
 
 export const AddProductButton = styled.button`

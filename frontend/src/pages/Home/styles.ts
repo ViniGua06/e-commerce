@@ -14,7 +14,8 @@ export const ProductContainer = styled.section`
   margin-top: 2rem;
   width: 100%;
   height: fit-content;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  column-gap: 0rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.7rem;
+  justify-content: center;
 `;

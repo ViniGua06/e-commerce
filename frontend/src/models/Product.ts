@@ -9,4 +9,5 @@ export interface IProduct {
   image: string;
   desc: string;
   demand?: number;
+  priceAfterDemand?: number;
 }

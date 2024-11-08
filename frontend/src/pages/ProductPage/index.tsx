@@ -119,8 +119,6 @@ export const ProductPage = () => {
         soma += product.rating[i];
       }
 
-      console.log(soma / product.rating.length);
-
       setAverage(soma / product.rating.length);
     }
   };
@@ -154,9 +152,7 @@ export const ProductPage = () => {
     dispatch(addProduct({ product: product! }));
   };
 
-  useEffect(() => {
-    console.log(products, "UABIYUBOU");
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>

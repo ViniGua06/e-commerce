@@ -20,7 +20,7 @@ export const SheetContainer = styled.div<ISheet>`
   padding: 1rem;
   flex-direction: column;
   transition: transform 0.3s ease-in-out;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   width: 25%;
@@ -48,16 +48,18 @@ export const Title = styled.h1`
 export const ProductsContainer = styled.div`
   margin-top: 1rem;
   width: 100%;
-  height: 800%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   gap: 1rem;
+
+  scrollbar-color: #4e3f30;
 `;
 
 export const ProductContainer = styled.div`
   width: 100%;
-  height: 180px;
+  min-height: 180px;
   display: flex;
   gap: 1rem;
 `;
@@ -94,5 +96,28 @@ export const PlusMinusContainer = styled.div`
   & > *:hover {
     cursor: pointer;
     transform: scale(1.1);
+  }
+`;
+
+export const PriceContainer = styled.div`
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+export const BuyButton = styled.button`
+  padding: 1rem;
+  border: none;
+  border-radius: 2rem;
+  background-color: #4e3f30;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   }
 `;

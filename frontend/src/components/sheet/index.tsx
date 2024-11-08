@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
+  BuyButton,
   ImageContainer,
   PlusMinusContainer,
+  PriceContainer,
   ProductContainer,
   ProductsContainer,
   SecondContainer,
@@ -13,12 +15,13 @@ import {
 import { desactiveSheet, sheetSelector } from "../../redux/sheet/slice";
 
 import { X, Plus, Minus } from "lucide-react";
+
 import {
   decreaseDemand,
   increaseDemand,
   productSelector,
 } from "../../redux/cart/slice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const SheetComponent = () => {
   const { active } = useSelector(sheetSelector);
@@ -36,8 +39,31 @@ export const SheetComponent = () => {
   };
 
   useEffect(() => {
-    console.log(products, "VAI");
-  }, []);
+    if (active) {
+      document.body.style.overflow = "hidden";
+    } else {
+      setTimeout(() => {
+        document.body.style.overflowY = "auto";
+      }, 400);
+    }
+  }, [active]);
+
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const calcTotalPrice = () => {
+    let price = 0;
+
+    for (let i = 0; i < products.length; i++) {
+      price += products[i].priceAfterDemand!;
+    }
+
+    setTotalPrice(price);
+  };
+
+  useEffect(() => {
+    calcTotalPrice();
+  }, [products]);
+
   return (
     <>
       <SheetBackground active={active} onClick={closeModal}>
@@ -65,6 +91,13 @@ export const SheetComponent = () => {
 
                       <h3>Quantidade: {item.demand}</h3>
 
+                      <h3>
+                        {Intl.NumberFormat("pt-br", {
+                          style: "currency",
+                          currency: "BRL",
+                        }).format(item.priceAfterDemand!)}
+                      </h3>
+
                       <PlusMinusContainer>
                         <Plus
                           onClick={() =>
@@ -83,6 +116,14 @@ export const SheetComponent = () => {
               );
             })}
           </ProductsContainer>
+          <PriceContainer>
+            Preço Total:{" "}
+            {Intl.NumberFormat("pt-br", {
+              style: "currency",
+              currency: "BRL",
+            }).format(totalPrice)}
+            <BuyButton>Finalizar Compra</BuyButton>
+          </PriceContainer>
         </SheetContainer>
       </SheetBackground>
     </>

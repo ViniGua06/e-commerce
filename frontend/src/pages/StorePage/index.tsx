@@ -57,6 +57,8 @@ export const StorePage = () => {
   useEffect(() => {
     getStore();
     getProducts();
+
+    console.log(store_id, user_id);
   }, []);
 
   return (
@@ -64,21 +66,72 @@ export const StorePage = () => {
       <Header></Header>
       <Main>
         {store ? (
+          <>
+            <Container>
+              <StoreImage src={store?.image}></StoreImage>
+              <StoreTitle>{store?.name.toUpperCase()}</StoreTitle>
+            </Container>
+
+            <ProductTitle>Produtos</ProductTitle>
+
+            <ProductContainer>
+              {products.length > 0 ? (
+                products.map((item) => {
+                  return (
+                    <>
+                      {store.user_id == user_id ? (
+                        <AddProductButton onClick={goToCreateProduct}>
+                          Adicionar Produto
+                        </AddProductButton>
+                      ) : null}
+
+                      <ProductCard
+                        desc={item.desc}
+                        _id={item._id}
+                        image={item.image}
+                        name={item.name}
+                        price={item.price}
+                        quantity={item.quantity}
+                        rating={item.rating}
+                        store={item.store}
+                        tags={item.tags}
+                        key={item._id}
+                      ></ProductCard>
+                    </>
+                  );
+                })
+              ) : (
+                <>
+                  <h1>Nenhum produto encontrado!</h1>
+                  {user_id == store.user_id ? (
+                    <>
+                      <Button
+                        type="button"
+                        text={"Criar Produto"}
+                        onClick={goToCreateProduct}
+                      ></Button>
+                    </>
+                  ) : null}
+                </>
+              )}{" "}
+            </ProductContainer>
+          </>
+        ) : (
+          <h2>Loja não existe!</h2>
+        )}
+
+        {/* {store ? (
           products.length > 0 ? (
             products.map((item) => {
               return (
                 <>
-                  {store._id == user_id ? (
-                    <AddProductButton>Adicionar Produto</AddProductButton>
+                  {store.user_id == user_id ? (
+                    <AddProductButton onClick={goToCreateProduct}>
+                      Adicionar Produto
+                    </AddProductButton>
                   ) : null}
 
-                  <Container>
-                    <StoreImage src={store.image}></StoreImage>
-                    <StoreTitle>{store?.name.toUpperCase()}</StoreTitle>
-                  </Container>
-
-                  <ProductTitle>Produtos</ProductTitle>
-
+                 
                   <ProductContainer>
                     <ProductCard
                       desc={item.desc}
@@ -118,7 +171,7 @@ export const StorePage = () => {
           )
         ) : (
           <h2>Loja não existe</h2>
-        )}
+        )} */}
       </Main>
     </>
   );
